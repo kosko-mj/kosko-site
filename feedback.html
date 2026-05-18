@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback | Kosko Labs</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
+                </svg>
+            </div>
+            <span>KOSKO <span>LABS</span></span>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Home</a>
+            <a href="pdf-ninja.html" style="color: var(--text); text-decoration: none; font-weight: 600;">PDF Ninja Pro</a>
+            <a href="feedback.html" style="color: var(--text); text-decoration: none; font-weight: 600; opacity: 0.7;">Feedback</a>
+        </div>
+    </nav>
+
+    <main style="max-width: 600px; margin: 0 auto; padding: 4rem 20px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Help Us Build <span class="highlight">Better Tools.</span></h1>
+            <p style="color: var(--gray); font-size: 1.1rem;">Spotted a bug? Have a feature request for PDF Ninja Pro? Or an idea for a brand new utility? Drop it below.</p>
+        </div>
+
+        <div class="privacy-box" style="text-align: left; margin-top: 0; padding: 2.5rem;">
+            
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <i class="ri-chat-voice-line" style="color: var(--accent); font-size: 2.5rem;"></i>
+            </div>
+
+            <form action="https://formspree.io/f/xjgzvdbk" method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">                
+                
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="email" style="font-weight: 600; font-size: 0.95rem;">Your Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com" 
+                        style="padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="feedback-type" style="font-weight: 600; font-size: 0.95rem;">Type of Feedback</label>
+                    <select id="feedback-type" name="feedback_type" required onchange="toggleProductDropdown()"
+                        style="padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem;">
+                        <option value="" disabled selected>Select feedback type...</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="new-idea">New Product/Utility Idea</option>
+                        <option value="general">General Inquiry</option>
+                    </select>
+                </div>
+
+                <div id="product-group" style="display: none; flex-direction: column; gap: 0.5rem;">
+                    <label for="product-select" style="font-weight: 600; font-size: 0.95rem;">Which Product?</label>
+                    <select id="product-select" name="product_name"
+                        style="padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem;">
+                        <option value="pdf-ninja-pro">PDF Ninja Pro</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="message" style="font-weight: 600; font-size: 0.95rem;">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Describe the issue or your idea in detail..." 
+                        style="padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="border: none; cursor: pointer; padding: 0.8rem; font-weight: 600; font-size: 1rem; margin-top: 0.5rem;">
+                    Send Feedback
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kosko Labs. Crafted with focus and intent.</p>
+    </footer>
+
+    <script>
+        function toggleProductDropdown() {
+            const feedbackType = document.getElementById('feedback-type').value;
+            const productGroup = document.getElementById('product-group');
+            const productSelect = document.getElementById('product-select');
+
+            if (feedbackType === 'bug' || feedbackType === 'feature') {
+                productGroup.style.display = 'flex';
+                productSelect.setAttribute('required', 'required');
+            } else {
+                productGroup.style.display = 'none';
+                productSelect.removeAttribute('required');
+            }
+        }
+    </script>
+</body>
+</html>

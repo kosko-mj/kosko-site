@@ -1,0 +1,355 @@
+/* ==========================================================================
+   Global Design Variables (Kosko Labs - Sophisticated Light Theme)
+   ========================================================================== */
+:root {
+    --bg: #fcfcfc;          /* Pristine architectural off-white */
+    --card: #ffffff;        /* Pure white for containers */
+    --text: #111111;        /* Crisp obsidian text for maximum readability */
+    --gray: #666666;        /* Muted neutral gray for descriptions */
+    --success: #2e7d32;
+    --accent: #ff4f00;      /* Polished, rich amber accent */
+    --border: #e5e5e5;      /* Subtle clean border line */
+}
+
+/* ==========================================================================
+   Scoped Product Override (PDF Ninja Pro - High-Performance Dark Theme)
+   ========================================================================== */
+.pdf-ninja-page {
+    --bg: #0f0f0f;          /* Back to your original deep black */
+    --card: #1a1a1a;        /* Original dark card background */
+    --text: #ffffff;        /* Pure white text */
+    --gray: #9e9e9e;        /* Original muted gray */
+    --success: #4caf50;
+    --accent: #e53935;      /* Your signature vivid red */
+    --border: #222222;      /* Original dark border line */
+}
+
+/* Global rule adjustment to use our new border variable */
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s ease, color 0.2s ease; /* Smooth transition between tabs */
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 8%;
+    align-items: center;
+    border-bottom: 1px solid var(--border); /* Changed from #222 to look pristine on white */
+}
+
+.logo { 
+    font-size: 1.1rem; 
+    font-weight: 800; 
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-box {
+    background: var(--accent);
+    color: white;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    overflow: hidden; /* Ensures the star stays inside the lines */
+}
+
+/* Target the SVG specifically for the spin */
+.logo-box svg, .logo-box i {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* The Hover Trigger - Now spins the icon, not the box */
+.logo:hover .logo-box svg, 
+.logo:hover .logo-box i {
+    transform: rotate(360deg);
+}
+
+.logo span { color: var(--accent); }
+
+.btn-small {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid #444;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 6rem 10% 4rem;
+}
+
+h1 { 
+    font-size: clamp(2.5rem, 6vw, 4rem); 
+    font-weight: 800;
+    margin-bottom: 1.5rem; 
+    line-height: 1.1;
+}
+
+.highlight { color: var(--accent); }
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+}
+
+/* Features Section - THE FIX IS HERE */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 10%;
+    flex-wrap: wrap; /* Keeps it looking good on mobile */
+}
+
+.feature-card {
+    background: var(--card);
+    padding: 2rem;
+    border-radius: 12px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    border: 1px solid #222;
+    text-align: center; /* Centers the text inside the card */
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    color: var(--text);
+}
+
+.feature-card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+/* Pricing Section */
+.pricing {
+    padding: 4rem 10%;
+    background: linear-gradient(to bottom, var(--bg), #151515);
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.price-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.price-card {
+    background: var(--card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 320px;
+    border: 1px solid #333;
+    position: relative;
+    text-align: center;
+}
+
+.price-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(229, 57, 53, 0.15);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.price-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+.price-amount { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; }
+.price-amount span { font-size: 1rem; color: var(--gray); font-weight: 400; }
+
+ul { list-style: none; padding: 0; margin: 0 0 2rem; text-align: left; }
+li { margin-bottom: 1rem; display: flex; align-items: center; font-size: 0.95rem; }
+li::before { 
+    content: "✓"; 
+    color: var(--success); 
+    margin-right: 12px; 
+    font-weight: 900;
+}
+
+/* Privacy Box */
+.privacy-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block; /* Ensures it sits on its own line above the text */
+}
+
+.privacy-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-top: 4rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Subtle, elegant shadow for light mode */
+}
+
+/* Adjust the shadow to look deep and premium when switched to dark mode */
+.pdf-ninja-page .privacy-box {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.privacy-box h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.btn-primary:hover { transform: translateY(-2px); }
+
+footer {
+    text-align: center;
+    padding: 4rem 10%;
+    font-size: 0.9rem;
+    color: var(--gray);
+    border-top: 1px solid #222;
+}
+
+/* Card Icons (Replacing Emojis) */
+.card-icon-v2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+/* 1. Force the Roadmap items to hide any automatic icons/bullets */
+.roadmap-item {
+    list-style: none !important;
+    display: flex;
+    align-items: center;
+    color: #888 !important;
+    padding-left: 0 !important;
+    margin-top: 8px;
+}
+
+/* 2. Target any 'i' tags (icons) that might be inside roadmap-item and hide them */
+/* This is likely where the "ghost" green checks are coming from */
+.roadmap-item i {
+    display: none !important; 
+}
+
+/* 3. Space out the Roadmap title and the Coming Soon pill */
+.roadmap-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* This creates the space you need */
+    margin-top: 15px;
+    color: #ffcc00 !important;
+}
+
+.coming-soon-pill {
+    margin-left: auto; /* Pushes the pill to the right, or use a fixed margin */
+    font-size: 0.65rem;
+    background: rgba(255, 204, 0, 0.1);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    color: #ffcc00;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* 4. Add the neutral bullet back manually so it doesn't look like a check */
+.roadmap-item::before {
+    content: "•"; 
+    margin-right: 12px;
+    color: #444;
+}
+
+/* ==========================================================================
+   PDF Ninja Pro Hero Shuriken Animation & Sizing
+   ========================================================================== */
+
+/* Centers the logo box within the hero section */
+.hero-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* Force the hero box to stay completely stationary and bring the red box styling back */
+.hero .hero-logo-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Re-applying your extension's signature red box branding */
+    background-color: #ff4b2b; 
+    border-radius: 12px;
+    
+    transform: none !important; /* Locks the box down permanently */
+    transition: none !important;
+}
+
+/* TARGETS ONLY THE SVG: This makes just the white shuriken spin */
+.hero .hero-logo-box svg {
+    width: 32px;
+    height: 32px;
+    /* Triggers the quick spin sequence every 4 seconds on the icon only */
+    animation: shuriken-fast-spin 4s ease-in-out infinite;
+}
+
+/* The Fast Shuriken Spin Keyframes */
+@keyframes shuriken-fast-spin {
+    0%, 85% {
+        transform: scale(1) rotate(0deg);
+    }
+    88% {
+        transform: scale(1.2) rotate(-30deg); /* Wind up slightly backwards */
+    }
+    92% {
+        transform: scale(1.2) rotate(740deg); /* Fast, aggressive over-spin */
+    }
+    96%, 100% {
+        transform: scale(1) rotate(720deg); /* Settle back to center */
+    }
+}
