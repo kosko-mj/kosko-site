@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Freezeframe",
+  "version": "1.0",
+  "description": "Instantly freeze and save your open tabs locally to clear memory.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

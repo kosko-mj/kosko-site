@@ -1,0 +1,167 @@
+/* --- Core Structural Canvas --- */
+body {
+    width: 360px;
+    margin: 0;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #F4F3EF; /* Mid-century cream linen tone */
+    color: #1A1A1A; /* Crisp off-black */
+    box-sizing: border-box;
+}
+
+/* --- Header Architecture --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #1A1A1A; /* Heavy structural line */
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-family: "Courier New", Courier, monospace; /* Utilitarian font */
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: -0.05em;
+}
+
+.status-block {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: right;
+    background-color: #E7E5DF;
+    padding: 6px 10px;
+    border: 1px solid #1A1A1A;
+    line-height: 1.3;
+}
+
+#ram-count {
+    font-size: 0.65rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* --- Primary Heavy Trigger Action --- */
+main {
+    margin-bottom: 24px;
+}
+
+#freeze-btn {
+    width: 100%;
+    background-color: #1A1A1A; /* Brutalist stark block */
+    color: #FFF;
+    border: none;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+#freeze-btn:hover {
+    background-color: #2D2D2D;
+}
+
+#freeze-btn:active {
+    transform: translate(2px, 2px);
+}
+
+.hint {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 6px;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+/* --- History Container Layout --- */
+.history-container h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    color: #1A1A1A;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* The "Capsule" Frame Item Block */
+.frame-item {
+    background: #FFF;
+    border: 2px solid #1A1A1A; /* Solid architectural border */
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 0px #1A1A1A; /* Heavy, flat brutalist drop-shadow */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.frame-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frame-info strong {
+    font-family: "Courier New", Courier, monospace; /* Timestamp tracking */
+    font-size: 0.85rem;
+}
+
+.frame-info span {
+    font-size: 0.8rem;
+    color: #666; /* Clean, plain text instead of a solid black block */
+    font-weight: 500;
+}
+
+/* Dynamic Action Bar buttons inside each capsule */
+.frame-actions {
+    display: flex;
+    gap: 8px;
+    border-top: 1px dashed #1A1A1A;
+    padding-top: 8px;
+}
+
+.restore-btn, .delete-btn {
+    flex: 1;
+    padding: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #1A1A1A;
+}
+
+.restore-btn {
+    background-color: #E2EFE0; /* Muted architectural mint green */
+}
+
+.restore-btn:hover {
+    background-color: #D3E5D0;
+}
+
+.delete-btn {
+    background-color: #F0D7D7; /* Soft terracotta/rose modern red */
+}
+
+.delete-btn:hover {
+    background-color: #E8C3C3;
+}
+
+.empty-state {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    padding: 20px 0;
+    border: 2px dashed #BCB9B1;
+    background: #EBEAE4;
+}
