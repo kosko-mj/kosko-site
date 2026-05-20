@@ -22,19 +22,29 @@
 </head>
 <body class="pdf-ninja-page">
 
-    <nav>
+    <nav style="border-bottom: 1px solid var(--border); width: 100%; box-sizing: border-box;">
         <div class="logo">
             <div class="logo-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
                 </svg>
             </div>
-            <span>KOSKO <span>LABS</span></span>
+            KOSKO <span>LABS</span>
         </div>
-        <div class="nav-links" style="display: flex; gap: 20px; align-items: center;">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: 600;">Home</a>
-            <a href="pdf-ninja.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 600;">PDF Ninja Pro</a>
-            <a href="feedback.html" style="color: white; text-decoration: none; font-weight: 600;">Feedback</a>
+
+        <div class="nav-links" style="display: flex; gap: 24px; align-items: center;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Home</a>
+            
+            <div class="dropdown">
+                <button class="dropdown-trigger" style="color: var(--gray); font-weight: 600; background: none; border: none; padding: 0; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                    Tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="pdf-ninja.html" style="font-weight: 500;">PDF Ninja Pro</a>
+                    </div>
+            </div>
+
+            <a href="feedback.html" style="color: var(--gray); text-decoration: none; font-weight: 600;">Feedback</a>
         </div>
     </nav>
 

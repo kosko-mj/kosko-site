@@ -39,7 +39,7 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 8%;
+    padding: 1.5rem 2rem;
     align-items: center;
     border-bottom: 1px solid var(--border); /* Changed from #222 to look pristine on white */
 }
@@ -79,6 +79,82 @@ nav {
 
 .logo span { color: var(--accent); }
 
+/* Tools Dropdown Base Mechanics */
+.dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+/* Strip any browser default button styles that might cause misalignment */
+.dropdown-trigger {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Light up trigger link color on hover states */
+.dropdown:hover .dropdown-trigger {
+    color: var(--text) !important;
+}
+
+/* The actual floating overlay menu container */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;                 /* Left-aligned to the "T" in Tools */
+    top: 100%;               /* Positions perfectly under the font baseline */
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;      
+    min-width: 160px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    padding: 0.4rem 0;
+}
+
+/* THE FIX: Invisible structural bridge to catch the mouse cursor */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -12px;              /* Reaches UP behind the "Tools" text */
+    left: 0;
+    width: 100%;
+    height: 12px;            /* Fills the gap completely */
+    background: transparent; /* Totally hidden from the user */
+}
+
+/* Links inside the menu panel drawer */
+.dropdown-menu a {
+    color: var(--gray) !important;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.1s ease, color 0.1s ease;
+    text-align: left;        
+}
+
+/* Row Highlights */
+.dropdown-menu a:hover {
+    background: rgba(0, 0, 0, 0.03) !important;
+    color: var(--text) !important;
+}
+
+/* High-Performance Dark Theme Mode Adjustments */
+.pdf-ninja-page .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Native CSS Hover Engine */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 .btn-small {
     color: var(--text);
     text-decoration: none;
@@ -94,20 +170,43 @@ nav {
     padding: 6rem 10% 4rem;
 }
 
-h1 { 
-    font-size: clamp(2.5rem, 6vw, 4rem); 
-    font-weight: 800;
-    margin-bottom: 1.5rem; 
-    line-height: 1.1;
+/* Big bold first sentence */
+.hero p:first-of-type {
+    font-size: 1.5rem;
+    color: var(--text);
+    font-weight: 600;
+    max-width: 650px;
+    margin: 0 auto 1.5rem; /* Centered with a 1.5rem space below it */
 }
 
-.highlight { color: var(--accent); }
-
+/* The two supporting sentences */
 .hero p {
     font-size: 1.25rem;
     color: var(--gray);
     max-width: 650px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 1.5rem; /* Centered with a 1.5rem space below them */
+}
+
+/* Clean up the bottom margin on the very last line */
+.hero p:last-of-type {
+    margin-bottom: 2.5rem; /* Keeps the spacing nice above the cards */
+}
+
+/* ==========================================================================
+   Logo Centerpiece Modifications (Isolated to protect your layout)
+   ========================================================================== */
+.hero-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+/* Inherits your native transitions/backgrounds but forces structural scaling */
+.hero-logo-container .logo-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 14px;
+    padding: 16px;
 }
 
 /* Features Section - THE FIX IS HERE */
@@ -352,4 +451,86 @@ footer {
     96%, 100% {
         transform: scale(1) rotate(720deg); /* Settle back to center */
     }
+}
+
+/* --- Sophisticated Tools Dropdown --- */
+.tools-dropdown:hover .dropdown-menu,
+.tools-dropdown:focus-within .dropdown-menu {
+    display: flex; /* Shows smoothly on hover or focus */
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    min-width: 180px;
+    padding: 6px 0;
+    z-index: 100;
+}
+
+.dropdown-menu a {
+    color: var(--text);
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--border);
+    color: var(--accent);
+}
+
+/* Feedback Banner */
+.feedback-banner {
+    padding: 4rem 10%;
+    background: var(--card); /* Matches your project card background */
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.feedback-content {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.feedback-content h2 {
+    color: var(--text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feedback-content p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Call to Action Button */
+.btn-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff; /* adjust based on your light/dark text variable if needed */
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.btn-large:hover {
+    filter: brightness(1.1);
 }

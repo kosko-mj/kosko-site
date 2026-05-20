@@ -3,103 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Ninja Pro | Secure & Private PDF Merging</title>
-
+    <title>Kosko Labs | Independent Software & Tools</title>
     <meta name="google-site-verification" content="clsU3Fp9sAxqQDKlJ9hoEI9LaE9TcCLZTFoaNtuRqq4" />
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
+    <nav style="border-bottom: 1px solid var(--border); width: 100%; box-sizing: border-box;">
         <div class="logo">
             <div class="logo-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
                 </svg>
             </div>
-            <span>PDF <span>NINJA</span> PRO</span>
+            KOSKO <span>LABS</span>
         </div>
-        <a href="YOUR_CHROME_STORE_URL_HERE" class="btn-small">Install Extension</a>
+
+        <div class="nav-links" style="display: flex; gap: 24px; align-items: center;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Home</a>
+            
+            <div class="dropdown">
+                <button class="dropdown-trigger" style="color: var(--gray); font-weight: 600; background: none; border: none; padding: 0; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                    Tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="pdf-ninja.html" style="font-weight: 500;">PDF Ninja Pro</a>
+                    </div>
+            </div>
+
+            <a href="feedback.html" style="color: var(--gray); text-decoration: none; font-weight: 600;">Feedback</a>
+        </div>
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
-            <h1>Merge PDFs with <span class="highlight">Total Privacy.</span></h1>
-            <p>Processing happens 100% in your browser. No files are uploaded. Your sensitive data never leaves your computer.</p>
-            <a href="YOUR_CHROME_STORE_URL_HERE" class="btn-primary">Add to Chrome — Get Started</a>
+            <div class="hero-logo-container">
+                <div class="logo-box">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
+                    </svg>
+                </div>
+            </div>
+            <p>We build software utilities for the digital working man. Because that’s what we are, and that’s who we care about.</p>
+            <p>No bloated code. No tracking. Just pure utility.</p>
+            <p>We don’t run your day. We just make it run better.</p>
         </section>
 
-        <!-- Features Section -->
         <section class="features">
-            <div class="feature-card">
+            <div class="feature-card project-card">
                 <i class="ri-shield-keyhole-line card-icon-v2"></i>
-                <h3>Local Processing</h3>
-                <p>Perfect for legal, financial, and medical documents. We never see your data.</p>
+                <h3>PDF Ninja Pro</h3>
+                <p>A fast, 100% local PDF merger built as a Chrome Extension. Merge legal, financial, or personal documents entirely in your browser using local CPU power. Your data never leaves your machine.</p>
+                <a href="pdf-ninja.html" class="btn-small project-link">View Project <i class="ri-arrow-right-line"></i></a>
             </div>
-            <div class="feature-card">
-                <i class="ri-flashlight-line card-icon-v2"></i>
-                <h3>Instant Merge</h3>
-                <p>No waiting for uploads or downloads. Merge files instantly using your local CPU power.</p>
+
+            <div class="feature-card project-card disabled-card">
+                <i class="ri-code-s-slash-line card-icon-v2 text-muted"></i>
+                <h3>More Coming Soon</h3>
+                <p>We are currently architecting new utilities designed to streamline workflows, optimize security, and give users complete control over their digital environments.</p>
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section class="pricing">
-            <div class="pricing-header">
-                <h2>Professional Tools. Fair Pricing.</h2>
-                <p>Upgrade to Pro for unlimited access and advanced features.</p>
+        <section class="feedback-banner">
+            <div class="feedback-content">
+                <h2>Built on your feedback.</h2>
+                <p>We build our utilities alongside the people who actually use them. If a tool isn't running exactly how you need it to, or if you have an idea for a feature that would make your day run better, let us know.</p>
+                <a href="feedback.html" class="btn-large">Drop a Line <i class="ri-mail-send-line"></i></a>
             </div>
-            <div class="price-grid">
-                <!-- Monthly Plan -->
-                <div class="price-card">
-                    <div class="price-name">Monthly Pro</div>
-                    <div class="price-amount">$7.99<span>/mo</span></div>
-                    <p class="price-subtitle">Flexible monthly access.</p>
-                    <ul>
-                        <li><i class="ri-check-line"></i> <strong>Unlimited</strong> file merges</li>
-                        <li><i class="ri-check-line"></i> <strong>Unlimited</strong> file sizes</li>
-                        <li><i class="ri-check-line"></i> Custom Naming Engine</li>
-                        <li><i class="ri-check-line"></i> Priority Support</li>
-                    </ul>
-                </div>
-
-                <!-- Annual Plan -->
-                <div class="price-card featured">
-                    <div class="badge">BEST VALUE — SAVE 50%</div>
-                    <div class="price-name">Annual Pro</div>
-                    <div class="price-amount">$49<span>/yr</span></div>
-                    <p class="price-subtitle">Just $4.08/mo — billed annually.</p>
-                    <ul>
-                        <li><i class="ri-check-line"></i> <strong>Everything in Monthly</strong></li>
-                        <hr class="pricing-divider">
-                        <li class="roadmap-header">
-                            <i class="ri-rocket-line"></i> <strong>The 2026 Roadmap</strong> 
-                            <span class="coming-soon-pill">Coming Soon</span>
-                        </li>
-                        <li class="roadmap-item">PDF Compression</li>
-                        <li class="roadmap-item">Visual Page Extraction</li>
-                        <li class="roadmap-item">Image-to-PDF Conversion</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Privacy Callout -->
-        <section class="privacy-box">
-            <i class="ri-shield-user-line privacy-icon"></i>
-            <h3>The Ninja Privacy Promise</h3>
-            <p>Most PDF tools profit by uploading your files to their servers. We don't. We provide the tools; you keep the data. It's safer, faster, and completely private.</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 PDF Ninja Pro. Built for professionals who value security.</p>
+        <p>&copy; 2026 Kosko Labs. Built for professionals who value security.</p>
     </footer>
 
 </body>
