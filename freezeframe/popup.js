@@ -11,38 +11,51 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     tabCountEl.textContent = `${currentTabs.length} Tabs Open`;
     ramCountEl.textContent = `~${estimatedRam}MB RAM Loaded`;
-    
+
     // 2. Render out any previously saved frames from local storage
     displaySavedFrames();
 
-    // 3. The Freeze Action Click Handler
+    // 3. The Freeze Action Click Handler with Custom Naming
     freezeBtn.addEventListener('click', async () => {
         if (currentTabs.length === 0) return;
 
-        // Map tab data to a clean array of objects
+        // Open a clean browser prompt to capture the session name
+        let sessionName = prompt("Name this Freezeframe session:", "");
+        
+        // If the user hits cancel, abort the freeze completely so they don't lose tabs
+        if (sessionName === null) return; 
+        
+        // Trim whitespace; if they left it blank, generate a clean fallback name
+        sessionName = sessionName.trim();
+        if (!sessionName) {
+            const existing = await new Promise(resolve => chrome.storage.local.get({ savedFrames: [] }, resolve));
+            sessionName = `Session #${existing.savedFrames.length + 1}`;
+        }
+
+        // Map tab data cleanly
         const tabsToSave = currentTabs.map(tab => ({
             title: tab.title,
             url: tab.url
         }));
 
-        // Create a unique key using the current timestamp
-        const timestamp = new Date().toLocaleString();
+        const timestamp = new Date().toLocaleDateString(); // Clean short date (e.g., 5/20/2026)
         const frameId = 'frame_' + Date.now();
         const frameData = {
             id: frameId,
+            name: sessionName,
             date: timestamp,
             tabs: tabsToSave
         };
 
-        // Pull existing history, append the new frame, and save back to local storage
+        // Pull existing history, prepend the new named frame, and save
         chrome.storage.local.get({ savedFrames: [] }, (result) => {
             const updatedFrames = [frameData, ...result.savedFrames];
             chrome.storage.local.set({ savedFrames: updatedFrames }, () => {
                 
-                // Open a new clean tab pointing to your Kosko Labs hub as the landing anchor
+                // Open landing anchor tab
                 chrome.tabs.create({ url: 'https://kosko-mj.github.io/kosko-site/' });
 
-                // Brutally close all the old memory-hogging tabs
+                // Close memory-hogging tabs
                 currentTabs.forEach(tab => chrome.tabs.remove(tab.id));
             });
         });
@@ -63,8 +76,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 li.className = 'frame-item';
                 li.innerHTML = `
                     <div class="frame-info">
-                        <strong>${frame.date}</strong>
-                        <span>(${frame.tabs.length} tabs)</span>
+                        <strong>${frame.name || 'Untitled Session'}</strong>
+                        <span>${frame.date} (${frame.tabs.length} tabs)</span>
                     </div>
                     <div class="frame-actions">
                         <button class="restore-btn" data-id="${frame.id}">Restore</button>
