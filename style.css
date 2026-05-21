@@ -24,6 +24,22 @@
     --border: #222222;      /* Original dark border line */
 }
 
+/* ==========================================================================
+   Scoped Product Override (Freezeframe - Mid-Century Brutalist Utility)
+   ========================================================================== */
+.freezeframe-page {
+    --bg: #F4F3EF;          /* Mid-century cream linen tone */
+    --card: #ffffff;        /* Pure white for the brutalist capsules */
+    --text: #1A1A1A;        /* Crisp off-black structural type */
+    --gray: #666666;        /* Balanced readable description neutral */
+    --border: #1A1A1A;      /* Heavy, solid architectural structural lines */
+    --accent: #1A1A1A;      /* Primary interactive blocks */
+    
+    /* App UI Specific Accent Tones */
+    --mint-green: #E2EFE0;  /* App's soft recovery green */
+    --terracotta: #F0D7D7;  /* App's soft deletion/alert red */
+}
+
 /* Global rule adjustment to use our new border variable */
 body {
     background: var(--bg);
@@ -533,4 +549,69 @@ footer {
 
 .btn-large:hover {
     filter: brightness(1.1);
+}
+
+/* Specific component refinements for Freezeframe's layout profile */
+.freezeframe-page .logo-box {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+.freezeframe-page .highlight {
+    color: var(--accent);
+}
+
+.freezeframe-page .btn-primary {
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 0px !important;
+    padding: 14px 28px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.freezeframe-page .btn-primary:hover {
+    background: #2D2D2D !important;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.freezeframe-page .feature-card {
+    background: var(--card);
+    border: 2px solid var(--border) !important;
+    border-radius: 0px !important;
+    box-shadow: 5px 5px 0px var(--border) !important;
+}
+
+/* Injecting the app's structural UI palette into the cards */
+.freezeframe-page .feature-card:first-of-type {
+    border-top: 6px solid var(--mint-green) !important;
+}
+
+.freezeframe-page .feature-card:last-of-type {
+    border-top: 6px solid var(--terracotta) !important;
+}
+
+.freezeframe-page .feature-card h3 {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.freezeframe-page .privacy-box {
+    background: #E7E5DF !important; /* Muted internal readout tone */
+    border: 2px solid var(--border) !important;
+    border-radius: 0px !important;
+    box-shadow: 4px 4px 0px var(--border) !important;
+}
+
+.freezeframe-page .privacy-box h3 {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
 }
