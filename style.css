@@ -113,7 +113,7 @@ nav {
     color: white;
     width: 32px;
     height: 32px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 0px;
@@ -274,7 +274,7 @@ nav {
 .hero .hero-logo-box {
     width: 60px;
     height: 60px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: var(--accent); 
@@ -333,9 +333,18 @@ nav {
     margin-bottom: 2rem;
 }
 
+/* Centering logic for home page cards with inner wrapper div */
+.feature-card > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 /* Icon-specific branding for Home Page cards */
 .icon-pdf { background-color: #e53935 !important; }
 .icon-freezeframe { background-color: #1A1A1A !important; }
+.icon-clearcut { background-color: #2c3e50 !important; }
 
 /* ==========================================================================
    7. PRICING LAYOUT COMPONENT
