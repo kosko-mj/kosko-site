@@ -1,19 +1,25 @@
 /* ==========================================================================
-   Global Design Variables (Kosko Labs - Sophisticated Light Theme)
+   1. GLOBAL DESIGN VARIABLES
    ========================================================================== */
 :root {
-    --bg: #fcfcfc;          /* Pristine architectural off-white */
-    --card: #ffffff;        /* Pure white for containers */
-    --text: #111111;        /* Crisp obsidian text for maximum readability */
-    --gray: #666666;        /* Muted neutral gray for descriptions */
-    --success: #2e7d32;
-    --accent: #ff4f00;      /* Polished, rich amber accent */
-    --border: #e5e5e5;      /* Subtle clean border line */
+    box-sizing: border-box;
 }
 
-/* ==========================================================================
-   Scoped Product Override (PDF Ninja Pro - High-Performance Dark Theme)
-   ========================================================================== */
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+:root {
+    --bg: #F4F3EF;          /* Balanced mid-century cream linen tone */
+    --card: #ffffff;        /* Pure white for containers */
+    --text: #1A1A1A;        /* Crisp off-black structural type */
+    --gray: #666666;        /* Balanced readable description neutral */
+    --success: #2e7d32;
+    --accent: #ff4f00;      /* Your signature polished, rich orange pop */
+    --border: #1A1A1A;      /* Heavy, solid architectural lines */
+}
+
+/* Scoped Product Override (PDF Ninja Pro - High-Performance Dark Theme) */
 .pdf-ninja-page {
     --bg: #0f0f0f;          /* Back to your original deep black */
     --card: #1a1a1a;        /* Original dark card background */
@@ -24,9 +30,7 @@
     --border: #222222;      /* Original dark border line */
 }
 
-/* ==========================================================================
-   Scoped Product Override (Freezeframe - Mid-Century Brutalist Utility)
-   ========================================================================== */
+/* Scoped Product Override (Freezeframe - Mid-Century Brutalist Utility) */
 .freezeframe-page {
     --bg: #F4F3EF;          /* Mid-century cream linen tone */
     --card: #ffffff;        /* Pure white for the brutalist capsules */
@@ -40,7 +44,9 @@
     --terracotta: #F0D7D7;  /* App's soft deletion/alert red */
 }
 
-/* Global rule adjustment to use our new border variable */
+/* ==========================================================================
+   2. GLOBAL BASE & RESET RULES
+   ========================================================================== */
 body {
     background: var(--bg);
     color: var(--text);
@@ -48,16 +54,38 @@ body {
     margin: 0;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.2s ease, color 0.2s ease; /* Smooth transition between tabs */
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Navigation */
+/* ==========================================================================
+   3. NAVIGATION COMPONENT
+   ========================================================================== */
 nav {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 2rem;
     align-items: center;
-    border-bottom: 1px solid var(--border); /* Changed from #222 to look pristine on white */
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    background: var(--bg);
+}
+
+.nav-links {
+    display: flex; 
+    gap: 24px; 
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text);
 }
 
 .logo { 
@@ -77,25 +105,28 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 0px;
     font-size: 1.2rem;
-    overflow: hidden; /* Ensures the star stays inside the lines */
+    overflow: hidden;
 }
 
-/* Target the SVG specifically for the spin */
-.logo-box svg, .logo-box i {
+.logo-box svg, 
+.logo-box i {
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* The Hover Trigger - Now spins the icon, not the box */
 .logo:hover .logo-box svg, 
 .logo:hover .logo-box i {
     transform: rotate(360deg);
 }
 
-.logo span { color: var(--accent); }
+.logo span { 
+    color: var(--accent); 
+}
 
-/* Tools Dropdown Base Mechanics */
+/* ==========================================================================
+   4. DROPDOWN SUB-SYSTEM
+   ========================================================================== */
 .dropdown {
     position: relative;
     display: inline-flex;
@@ -104,25 +135,36 @@ nav {
     cursor: pointer;
 }
 
-/* Strip any browser default button styles that might cause misalignment */
 .dropdown-trigger {
-    pointer-events: none;
+    /* Inherits most styles from .nav-links a */
+    pointer-events: none; /* Keep this so the parent .dropdown handles hover/click */
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-/* Light up trigger link color on hover states */
+/* Apply common styles to both nav links and the dropdown trigger */
+.nav-links a,
+.dropdown-trigger {
+    color: var(--gray);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
 .dropdown:hover .dropdown-trigger {
     color: var(--text) !important;
 }
 
-/* The actual floating overlay menu container */
 .dropdown-menu {
     display: none;
     position: absolute;
-    left: 0;                 /* Left-aligned to the "T" in Tools */
-    top: 100%;               /* Positions perfectly under the font baseline */
+    left: 0;
+    top: 100%;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 6px;      
@@ -132,20 +174,18 @@ nav {
     padding: 0.4rem 0;
 }
 
-/* THE FIX: Invisible structural bridge to catch the mouse cursor */
 .dropdown-menu::before {
     content: '';
     position: absolute;
-    top: -12px;              /* Reaches UP behind the "Tools" text */
+    top: -12px;
     left: 0;
     width: 100%;
-    height: 12px;            /* Fills the gap completely */
-    background: transparent; /* Totally hidden from the user */
+    height: 12px;
+    background: transparent;
 }
 
-/* Links inside the menu panel drawer */
 .dropdown-menu a {
-    color: var(--gray) !important;
+    color: var(--gray); /* Removed !important */
     padding: 0.5rem 1rem;
     text-decoration: none;
     display: block;
@@ -155,137 +195,174 @@ nav {
     text-align: left;        
 }
 
-/* Row Highlights */
+.dropdown-menu a.active {
+    color: var(--text);
+    font-weight: 600;
+}
+
 .dropdown-menu a:hover {
     background: rgba(0, 0, 0, 0.03) !important;
     color: var(--text) !important;
 }
 
-/* High-Performance Dark Theme Mode Adjustments */
 .pdf-ninja-page .dropdown-menu a:hover {
     background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Native CSS Hover Engine */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-.btn-small {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: 1px solid #444;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+.tools-dropdown:hover .dropdown-menu,
+.tools-dropdown:focus-within .dropdown-menu {
+    display: flex;
 }
 
-/* Hero Section */
+/* ==========================================================================
+   5. HERO LAYOUT ELEMENTS
+   ========================================================================== */
 .hero {
     text-align: center;
     padding: 6rem 10% 4rem;
 }
 
-/* Big bold first sentence */
 .hero p:first-of-type {
     font-size: 1.5rem;
     color: var(--text);
     font-weight: 600;
     max-width: 650px;
-    margin: 0 auto 1.5rem; /* Centered with a 1.5rem space below it */
+    margin: 0 auto 1.5rem;
 }
 
-/* The two supporting sentences */
 .hero p {
     font-size: 1.25rem;
     color: var(--gray);
     max-width: 650px;
-    margin: 0 auto 1.5rem; /* Centered with a 1.5rem space below them */
+    margin: 0 auto 1.5rem;
 }
 
-/* Clean up the bottom margin on the very last line */
 .hero p:last-of-type {
-    margin-bottom: 2.5rem; /* Keeps the spacing nice above the cards */
+    margin-bottom: 2.5rem;
 }
 
-/* ==========================================================================
-   Logo Centerpiece Modifications (Isolated to protect your layout)
-   ========================================================================== */
-.hero-logo-container {
+.hero-logo-container,
+.hero-logo-wrapper {
     display: flex;
     justify-content: center;
     margin-bottom: 2.5rem;
 }
 
-/* Inherits your native transitions/backgrounds but forces structural scaling */
-.hero-logo-container .logo-box {
-    width: 80px;
-    height: 80px;
-    border-radius: 14px;
-    padding: 16px;
+.hero-logo-wrapper .logo-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 0px;
+    padding: 0px;
+    box-shadow: 4px 4px 0px var(--border);
 }
 
-/* Features Section - THE FIX IS HERE */
+.hero .hero-logo-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent); 
+    border-radius: 0px;
+    transform: none !important;
+    transition: none !important;
+    border: 2px solid var(--border);
+}
+
+.hero .hero-logo-box svg {
+    width: 32px;
+    height: 32px;
+    animation: shuriken-fast-spin 4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   6. FEATURES CARD SYSTEM (RESTORED TO ORIGINAL PROPORTIONS)
+   ========================================================================== */
 .features {
     display: flex;
     justify-content: center;
     gap: 2rem;
     padding: 2rem 10%;
-    flex-wrap: wrap; /* Keeps it looking good on mobile */
+    flex-wrap: wrap; 
 }
 
 .feature-card {
     background: var(--card);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 0px; 
     flex: 1;
     min-width: 280px;
-    max-width: 400px;
-    border: 1px solid #222;
-    text-align: center; /* Centers the text inside the card */
+    max-width: 360px;
+    border: 2px solid var(--border); 
+    text-align: center;
+    box-shadow: 4px 4px 0px var(--border);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
 }
 
 .feature-card h3 {
     margin-top: 0;
+    margin-bottom: 0.5rem;
     color: var(--text);
+    font-size: 1.35rem;
+    font-weight: 800;
 }
 
 .feature-card p {
     color: var(--gray);
     font-size: 0.95rem;
+    margin-bottom: 2rem;
 }
 
-/* Pricing Section */
+/* Icon-specific branding for Home Page cards */
+.icon-pdf { background-color: #e53935 !important; }
+.icon-freezeframe { background-color: #1A1A1A !important; }
+
+/* ==========================================================================
+   7. PRICING LAYOUT COMPONENT
+   ========================================================================== */
 .pricing {
     padding: 4rem 10%;
-    background: linear-gradient(to bottom, var(--bg), #151515);
+    background: var(--bg);
+    border-top: 1px solid var(--border);
 }
 
-.pricing-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.price-grid {
+.pricing-grid-container {
     display: flex;
-    gap: 2rem;
     justify-content: center;
+    gap: 2rem;
+    width: 100%;
     flex-wrap: wrap;
 }
 
 .price-card {
     background: var(--card);
-    padding: 2.5rem;
-    border-radius: 16px;
-    width: 320px;
-    border: 1px solid #333;
+    padding: 2rem;
+    border-radius: 0px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 360px;
+    border: 2px solid var(--border);
     position: relative;
     text-align: center;
+    box-shadow: 4px 4px 0px var(--border);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .price-card.featured {
     border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(229, 57, 53, 0.15);
 }
 
 .badge {
@@ -295,46 +372,67 @@ nav {
     transform: translateX(-50%);
     background: var(--accent);
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 700;
     padding: 4px 12px;
-    border-radius: 20px;
+    border-radius: 0px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.price-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-.price-amount { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; }
-.price-amount span { font-size: 1rem; color: var(--gray); font-weight: 400; }
-
-ul { list-style: none; padding: 0; margin: 0 0 2rem; text-align: left; }
-li { margin-bottom: 1rem; display: flex; align-items: center; font-size: 0.95rem; }
-li::before { 
-    content: "✓"; 
-    color: var(--success); 
-    margin-right: 12px; 
-    font-weight: 900;
+.price-name { 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+    margin-bottom: 0.5rem; 
 }
 
-/* Privacy Box */
+.price-amount { 
+    font-size: 3rem; 
+    font-weight: 800; 
+    margin-bottom: 1.5rem; 
+}
+
+.brutalist-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 2rem;
+    text-align: left;
+    width: 100%;
+}
+
+.brutalist-checklist li {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   8. PRIVACY PROFILE PANELS
+   ========================================================================== */
 .privacy-icon {
     font-size: 3rem;
     color: var(--accent);
     margin-bottom: 1rem;
-    display: block; /* Ensures it sits on its own line above the text */
+    display: block;
 }
 
 .privacy-box {
     background: var(--card);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text);
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 0px;
     margin-top: 4rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Subtle, elegant shadow for light mode */
+    box-shadow: 4px 4px 0px var(--border);
 }
 
-/* Adjust the shadow to look deep and premium when switched to dark mode */
+.feedback-page .privacy-box {
+    text-align: left;
+    margin-top: 0;
+}
+
 .pdf-ninja-page .privacy-box {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
@@ -345,29 +443,95 @@ li::before {
     letter-spacing: -0.5px;
 }
 
-/* Buttons */
+/* ==========================================================================
+   9. INTERACTIVE ACTION ACTIONS (BUTTONS)
+   ========================================================================== */
+.btn-small {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
 .btn-primary {
     background: var(--accent);
     color: white;
     padding: 1rem 2.5rem;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-weight: 600;
-    transition: transform 0.2s;
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0px var(--border);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
     display: inline-block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-sizing: border-box;
 }
 
-.btn-primary:hover { transform: translateY(-2px); }
+.btn-primary:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border);
+}
 
+.btn-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff; 
+    padding: 1rem 2rem;
+    border-radius: 0px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0px var(--border);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-large:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border);
+    filter: none;
+}
+
+.price-cta {
+    width: 100%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+    background: var(--accent) !important;
+    color: white;
+    border: 2px solid var(--border);
+    font-weight: 800;
+    box-shadow: 4px 4px 0px var(--border);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-sizing: border-box;
+}
+
+.price-cta:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border);
+}
+
+/* ==========================================================================
+   10. FOOTER ATTRIBUTIONS
+   ========================================================================== */
 footer {
     text-align: center;
     padding: 4rem 10%;
     font-size: 0.9rem;
     color: var(--gray);
-    border-top: 1px solid #222;
+    border-top: 1px solid var(--border);
 }
 
-/* Card Icons (Replacing Emojis) */
+/* ==========================================================================
+   11. DATA LAYOUT COMPONENT PIPELINES
+   ========================================================================== */
 .card-icon-v2 {
     font-size: 2rem;
     color: var(--accent);
@@ -375,7 +539,6 @@ footer {
     display: inline-block;
 }
 
-/* 1. Force the Roadmap items to hide any automatic icons/bullets */
 .roadmap-item {
     list-style: none !important;
     display: flex;
@@ -385,23 +548,20 @@ footer {
     margin-top: 8px;
 }
 
-/* 2. Target any 'i' tags (icons) that might be inside roadmap-item and hide them */
-/* This is likely where the "ghost" green checks are coming from */
 .roadmap-item i {
     display: none !important; 
 }
 
-/* 3. Space out the Roadmap title and the Coming Soon pill */
 .roadmap-header {
     display: flex;
     align-items: center;
-    gap: 12px; /* This creates the space you need */
+    gap: 12px;
     margin-top: 15px;
     color: #ffcc00 !important;
 }
 
 .coming-soon-pill {
-    margin-left: auto; /* Pushes the pill to the right, or use a fixed margin */
+    margin-left: auto;
     font-size: 0.65rem;
     background: rgba(255, 204, 0, 0.1);
     border: 1px solid rgba(255, 204, 0, 0.3);
@@ -411,105 +571,74 @@ footer {
     white-space: nowrap;
 }
 
-/* 4. Add the neutral bullet back manually so it doesn't look like a check */
 .roadmap-item::before {
     content: "•"; 
     margin-right: 12px;
-    color: #444;
+    color: var(--gray);
 }
 
 /* ==========================================================================
-   PDF Ninja Pro Hero Shuriken Animation & Sizing
+   12. ANIMATION TIMINGS & SEQUENCE MECHANICS
    ========================================================================== */
-
-/* Centers the logo box within the hero section */
-.hero-logo-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 25px;
-}
-
-/* Force the hero box to stay completely stationary and bring the red box styling back */
-.hero .hero-logo-box {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Re-applying your extension's signature red box branding */
-    background-color: #ff4b2b; 
-    border-radius: 12px;
-    
-    transform: none !important; /* Locks the box down permanently */
-    transition: none !important;
-}
-
-/* TARGETS ONLY THE SVG: This makes just the white shuriken spin */
-.hero .hero-logo-box svg {
-    width: 32px;
-    height: 32px;
-    /* Triggers the quick spin sequence every 4 seconds on the icon only */
-    animation: shuriken-fast-spin 4s ease-in-out infinite;
-}
-
-/* The Fast Shuriken Spin Keyframes */
 @keyframes shuriken-fast-spin {
-    0%, 85% {
-        transform: scale(1) rotate(0deg);
-    }
-    88% {
-        transform: scale(1.2) rotate(-30deg); /* Wind up slightly backwards */
-    }
-    92% {
-        transform: scale(1.2) rotate(740deg); /* Fast, aggressive over-spin */
-    }
-    96%, 100% {
-        transform: scale(1) rotate(720deg); /* Settle back to center */
-    }
+    0%, 85% { transform: scale(1) rotate(0deg); }
+    88% { transform: scale(1.2) rotate(-30deg); }
+    92% { transform: scale(1.2) rotate(740deg); }
+    96%, 100% { transform: scale(1) rotate(720deg); }
 }
 
-/* --- Sophisticated Tools Dropdown --- */
-.tools-dropdown:hover .dropdown-menu,
-.tools-dropdown:focus-within .dropdown-menu {
-    display: flex; /* Shows smoothly on hover or focus */
+/* ==========================================================================
+   13. FEEDBACK FRAME DATA OVERLAYS
+   ========================================================================== */
+.feedback-page main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 4rem 20px;
 }
 
-.dropdown-menu {
-    display: none; /* Hidden by default */
+.feedback-page .feedback-hero {
+    padding-top: 0;
+}
+
+.feedback-page .form-icon-wrapper {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.feedback-page form {
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
-    min-width: 180px;
-    padding: 6px 0;
-    z-index: 100;
+    gap: 1.5rem;
 }
 
-.dropdown-menu a {
-    color: var(--text);
-    padding: 10px 16px;
-    text-decoration: none;
-    font-size: 0.9rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
     font-weight: 600;
-    transition: background 0.2s ease, color 0.2s ease;
+    font-size: 0.95rem;
 }
 
-.dropdown-menu a:hover {
-    background: var(--border);
-    color: var(--accent);
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
 }
 
-/* Feedback Banner */
 .feedback-banner {
     padding: 4rem 10%;
-    background: var(--card); /* Matches your project card background */
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     text-align: center;
     margin-top: 2rem;
 }
@@ -533,25 +662,47 @@ footer {
     margin-bottom: 2rem;
 }
 
-/* Call to Action Button */
-.btn-large {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--accent);
-    color: #fff; /* adjust based on your light/dark text variable if needed */
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s ease;
+/* ==========================================================================
+   14. SPECIFIC PRODUCT OVERRIDES (PDF NINJA HOVER & LAYOUT ALIGNMENT FIX)
+   ========================================================================== */
+.pdf-ninja-page .hero-logo-box {
+    width: 64px;
+    height: 64px;
+    background-color: #e53935;
+    box-shadow: 4px 4px 0px var(--border);
+    border: 2px solid var(--border);
+    animation: slow-spin 15s linear infinite;
 }
 
-.btn-large:hover {
-    filter: brightness(1.1);
+@keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* Specific component refinements for Freezeframe's layout profile */
+.pdf-ninja-page .pricing {
+    border-top: none !important;
+    background: linear-gradient(to bottom, var(--bg), #151515);
+}
+
+.pdf-ninja-page .brutalist-checklist li::before {
+    display: none !important; /* Removes stray ellipses/bullets */
+}
+
+.pdf-ninja-page .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ==========================================================================
+   15. PRODUCT OVERRIDES: FREEZEFRAME PIPELINE
+   ========================================================================== */
+.freezeframe-page .hero-logo-box {
+    background: #1A1A1A;
+    width: 64px;
+    height: 64px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+    border: 2px solid #1A1A1A;
+}
+
 .freezeframe-page .logo-box {
     background: var(--accent) !important;
     border-color: var(--accent) !important;
@@ -585,10 +736,9 @@ footer {
     background: var(--card);
     border: 2px solid var(--border) !important;
     border-radius: 0px !important;
-    box-shadow: 5px 5px 0px var(--border) !important;
+    box-shadow: 4px 4px 0px var(--border) !important;
 }
 
-/* Injecting the app's structural UI palette into the cards */
 .freezeframe-page .feature-card:first-of-type {
     border-top: 6px solid var(--mint-green) !important;
 }
@@ -604,7 +754,7 @@ footer {
 }
 
 .freezeframe-page .privacy-box {
-    background: #E7E5DF !important; /* Muted internal readout tone */
+    background: #E7E5DF !important;
     border: 2px solid var(--border) !important;
     border-radius: 0px !important;
     box-shadow: 4px 4px 0px var(--border) !important;

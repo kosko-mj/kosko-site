@@ -13,9 +13,9 @@
 </head>
 <body>
 
-    <nav style="border-bottom: 1px solid var(--border); width: 100%; box-sizing: border-box;">
+    <nav>
         <div class="logo">
-            <div class="logo-box" style="background: var(--accent); border-color: var(--accent);">
+            <div class="logo-box">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
                 </svg>
@@ -23,26 +23,26 @@
             KOSKO <span>LABS</span>
         </div>
 
-        <div class="nav-links" style="display: flex; gap: 24px; align-items: center;">
-            <a href="index.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Home</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
             
             <div class="dropdown">
-                <button class="dropdown-trigger" style="color: var(--gray); font-weight: 600; background: none; border: none; padding: 0; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                <button class="dropdown-trigger">
                     Tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="pdf-ninja.html" style="font-weight: 500; color: var(--gray);">PDF Ninja Pro</a>
-                    <a href="freezeframe.html" style="font-weight: 500; color: var(--gray);">Freezeframe</a>
+                    <a href="pdf-ninja.html">PDF Ninja Pro</a>
+                    <a href="freezeframe.html">Freezeframe</a>
                 </div>
             </div>
 
-            <a href="feedback.html" style="color: var(--gray); text-decoration: none; font-weight: 600;">Feedback</a>
+            <a href="feedback.html">Feedback</a>
         </div>
     </nav>
 
     <main>
         <section class="hero">
-            <div class="hero-logo-container">
+            <div class="hero-logo-wrapper">
                 <div class="logo-box">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 3h12M12 3v5M4.5 21h15M5.5 15.5l5-9.5h3l5 9.5a2 2 0 0 1-1.5 3h-10a2 2 0 0 1-1.5-3z"/>
@@ -55,19 +55,33 @@
         </section>
 
         <section class="features">
-            <div class="feature-card project-card">
-                <i class="ri-shield-keyhole-line card-icon-v2"></i>
-                <h3>PDF Ninja Pro</h3>
-                <p>A fast, 100% local PDF merger built as a Chrome Extension. Merge legal, financial, or personal documents entirely in your browser using local CPU power. Your data never leaves your machine.</p>
-                <a href="pdf-ninja.html" class="btn-small project-link">View Project <i class="ri-arrow-right-line"></i></a>
+            <div class="feature-card">
+                <div>
+                    <div class="logo-box icon-pdf">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3>PDF Ninja Pro</h3>
+                    <p>A fast, 100% local PDF merger built as a Chrome Extension. Merge legal, financial, or personal documents entirely in your browser using local CPU power. Your data never leaves your machine.</p>
+                </div>
+                <a href="pdf-ninja.html" class="btn-primary">View Project →</a>
             </div>
 
-            <div class="feature-card project-card">
-                <i class="ri-archive-stack-line card-icon-v2"></i>
-                <h3>Freezeframe</h3>
-                <p>A local-first workspace manager built to purge background browser RAM load. Instantly compress open active windows into named layout capsules and restore them right on demand.</p>
-                <a href="freezeframe.html" class="btn-small project-link">View Project <i class="ri-arrow-right-line"></i></a>
-            </div>
+            <div class="feature-card">
+                <div>
+                    <div class="logo-box icon-freezeframe">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                    </div>
+                    <h3>Freezeframe</h3>
+                    <p>A local-first workspace manager built to purge background browser RAM load. Instantly compress open active windows into named layout capsules and restore them right on demand.</p>
+                </div>
+                <a href="freezeframe.html" class="btn-primary">View Project →</a>
+            </div>
         </section>
 
         <section class="feedback-banner">
